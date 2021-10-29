@@ -5,9 +5,9 @@ module.exports = {
     async getTasks(request, h){
         try {
             const resp = await TaskModel.find({}).exec()
-            return h.reponse(resp).code(200)
+            return h.response(resp).code(200)
         } catch (error) {
-            return h.response(error).code(500)
+            console.log(error)
         }
     },
     async postTask(request, h){
@@ -25,6 +25,7 @@ module.exports = {
             if(objId === null) 
                 return h.response('Id invalido').code(400)
             const resp = await TaskModel.findById(objId).exec()
+            return h.response(resp).code(200)
         } catch (error) {
             return h.response(error).code(500)
         }
