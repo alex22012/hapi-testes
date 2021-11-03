@@ -1,7 +1,7 @@
 const projectHandler = require("../handlers/projectHandler")
 
 module.exports = [
-    {
+    { 
         method:'GET',
         path:"/projects",
         handler:(request, h) => projectHandler.getProjects(request, h)

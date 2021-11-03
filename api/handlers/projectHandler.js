@@ -5,9 +5,9 @@ module.exports = {
     async getProjects(request, h){
         try {
             const resp = await ProjectModel.find({}).exec()
-            return h.reponse(resp).code(200)
+            return h.response(resp).code(200)
         } catch (error) {
-            return h.reponse(error).code(500)
+            return h.response("Erro").code(500)
         }
     },
     async postProject(request, h){
@@ -15,7 +15,8 @@ module.exports = {
             const resp = await ProjectModel.create(request.payload)
             return h.response(resp).code(201)
         } catch (error) {
-            return h.response(error).code(500)
+            console.log(error)
+            return h.response("error").code(500)
         }
     },
     async getProject(request, h){
@@ -27,7 +28,7 @@ module.exports = {
             const resp = await ProjectModel.findById(id).exec()
             return h.response(resp).code(200)
         } catch (error) {
-            return h.response(error).code(500)
+            return h.response("error").code(500)
         }   
     },
     async putProject(request, h){
@@ -39,7 +40,7 @@ module.exports = {
             await ProjectModel.findByIdAndUpdate(objId, request.payload).exec()
             return h.response("Atualizado com sucesso").code(200)
         } catch (error) {
-            return h.response(error).code(500)
+            return h.response("error").code(500)
         }   
     },
     async deleteProject(request, h){
@@ -51,7 +52,7 @@ module.exports = {
             await ProjectModel.findByIdAndDelete(objId).exec()
             return h.response("Removido com sucesso").code(200)
         } catch (error) {
-            return h.response(error).code(500)
+            return h.response("error").code(500)
         }   
     },
 }
